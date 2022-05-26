@@ -1,0 +1,47 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { ProductPageComponent } from './product-page/product-page.comonent';
+import { ProductDescriptionComponent } from './product-description/product-description.component';
+import { ProductService } from './product.service';
+import { ProductTracklistingComponent } from './product-tracklisting/product-tracklisting.component';
+import { ProductListComponent } from './product-list/product-list.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full',
+  },
+  {
+    path: 'products',
+    component: ProductListComponent,
+  },
+  {
+    path: 'product/:id',
+    component: ProductPageComponent,
+  },
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ProductPageComponent,
+    ProductDescriptionComponent,
+    ProductTracklistingComponent,
+    ProductListComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+  ],
+  providers: [ProductService],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
